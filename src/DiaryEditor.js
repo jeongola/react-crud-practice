@@ -1,13 +1,14 @@
 import { useRef, useState } from 'react';
 
-const DiaryEditor = () => {
-  const authorInput = useRef();
-  const contentInput = useRef();
+const DiaryEditor = ({ onCreate }) => {
   const [state, setState] = useState({
     author: '',
     content: '',
     exercise: 1,
   });
+
+  const authorInput = useRef();
+  const contentInput = useRef();
 
   const handleChangeDiary = (e) => {
     setState({
@@ -26,8 +27,15 @@ const DiaryEditor = () => {
       contentInput.current.focus();
       return;
     }
+
+    onCreate(state.author, state.content, state.exercise);
     console.log(state);
     alert('저장 성공');
+    setState({
+      author: '',
+      content: '',
+      exercise: '',
+    });
   };
 
   return (
