@@ -1,8 +1,7 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const DiaryItem = ({ onEdit, onRemove, author, content, created_date, exercise, id }) => {
   const handleRemove = () => {
-    console.log(id);
     if (window.confirm(`${id}번째 일기를 정말 삭제하시겠습니까?`)) {
       onRemove(id);
     }
@@ -68,4 +67,4 @@ const DiaryItem = ({ onEdit, onRemove, author, content, created_date, exercise, 
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
